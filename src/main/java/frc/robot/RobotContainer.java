@@ -7,11 +7,15 @@ package frc.robot;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import frc.robot.commands.DriveWithXbox;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.MoveHorizontally;
+import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 
@@ -32,6 +36,7 @@ public class RobotContainer {
   private static SpeedControllerGroup left, right;
   private static DifferentialDrive drive;
   private static XboxController xboxController;
+  private static DriveTrain driveTrain;
 
 
 
@@ -44,11 +49,15 @@ public class RobotContainer {
     rightBottom = new WPI_VictorSPX(Constants.RIGHT_BOTTOM_PORT);
     center = new WPI_VictorSPX(Constants.CENTER_PORT);
 
+
     left = new SpeedControllerGroup(leftTop, leftBottom);
     right = new SpeedControllerGroup(rightTop, rightBottom);
 
     drive = new DifferentialDrive(left, right);
 
+    driveTrain = new DriveTrain(left, right, drive, center);
+    driveTrain.setDefaultCommand(new DriveWithXbox(xboxController));
+    
 
     configureButtonBindings();
   }
@@ -71,7 +80,11 @@ public class RobotContainer {
     return m_autoCommand;
   }
 
-  public XboxController getXboxController() {
+  public static XboxController getXboxController() {
     return xboxController;
+  }
+
+  public static DriveTrain getDriveTrain() {
+    return driveTrain;
   }
 }

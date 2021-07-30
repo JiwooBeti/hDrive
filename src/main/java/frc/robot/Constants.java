@@ -21,5 +21,11 @@ public final class Constants {
     public static final int RIGHT_BOTTOM_PORT = 1;
     public static final int CENTER_PORT = 2;
 
+    //speed
+    public static final double LEFT_SPEED = 1;
+    public static final double RIGHT_SPEED = 1;
+    public static final double CENTER_SPEED = 1;
+
+
 
 }

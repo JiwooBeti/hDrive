@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotContainer;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 
 public class DriveTrain extends SubsystemBase {
     //ray was here 7/29
@@ -20,15 +21,45 @@ public class DriveTrain extends SubsystemBase {
         this.center = center;
     }
 
-
-    public void getXboxInputs(XboxController xboxController) {
+    /*public void driveWithJoystick(XboxController xboxController) {
+        
+        //this statement below is probably wrong
         drive.arcadeDrive(xboxController.getY(), xboxController.getX());
+    }*/
+
+
+
+    /*public double getYinput(XboxController xboxController) {
+
+        return xboxController.getY(Hand.kLeft);
+        //gets y input of left joystick
     }
 
+    public double getXinput(XboxController xboxController) {
+        return xboxController.getX(Hand.kRight);
+        //gets x input of right joystick
+    }
 
+    public void moveVertically(double leftSpeed, double rightSpeed) {
+        left.set(leftSpeed);
+        right.set(rightSpeed);
+    }
 
+    public void moveHorizontally(double centerSpeed) {
+        center.set(centerSpeed);
+    }*/
 
-    
+    public void moveVertically(XboxController xboxController) {
+        drive.arcadeDrive(xboxController.getY(Hand.kLeft), xboxController.getX(Hand.kLeft));
+        //move vertically with the left joystick
+
+    }
+
+    public void moveHorizontally(XboxController xboxController) {
+        drive.arcadeDrive(xboxController.getX(Hand.kRight), xboxController.getY(Hand.kRight));
+        //move horizontally with right joystick
+
+    }
 
 
     public void stop() {
@@ -36,8 +67,5 @@ public class DriveTrain extends SubsystemBase {
         right.stopMotor();
         center.stopMotor();
     }
-
-    
-
 
 }
