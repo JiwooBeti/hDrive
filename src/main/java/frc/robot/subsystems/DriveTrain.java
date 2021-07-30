@@ -49,16 +49,18 @@ public class DriveTrain extends SubsystemBase {
         center.set(centerSpeed);
     }*/
 
+    //incorrect methods
     public void moveVertically(XboxController xboxController) {
         drive.arcadeDrive(xboxController.getY(Hand.kLeft), xboxController.getX(Hand.kLeft));
         //move vertically with the left joystick
+        //i think im only supposed to move the 2 speed controller groups so this is wrong
 
     }
 
     public void moveHorizontally(XboxController xboxController) {
         drive.arcadeDrive(xboxController.getX(Hand.kRight), xboxController.getY(Hand.kRight));
         //move horizontally with right joystick
-
+        //i think im only supposed to move the 1 speed controller so this is wrong too
     }
 
 
