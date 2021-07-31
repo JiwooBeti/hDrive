@@ -59,8 +59,13 @@ public class DriveTrain extends SubsystemBase {
 
     public void moveHorizontally(XboxController xboxController) {
         drive.arcadeDrive(xboxController.getX(Hand.kRight), xboxController.getY(Hand.kRight));
-        //move horizontally with right joystick
+        //move horizontally with right joystick, or maybe im supposed to do both on the same joystick 
         //i think im only supposed to move the 1 speed controller so this is wrong too
+        // so maybe 
+
+        // center.set(xboxController.getX(Hand.kRight));
+        
+        //left or right depends on the joystick used
     }
 
 
